@@ -1,8 +1,12 @@
-<nav class="">
-    <ul>
-        <li> <%= link_to "Store Home", store_path %> </li>
-        <% if !!@cart %>
-          <li> <%= link_to "Cart", cart_path(current_cart) %></li>
-        <% end %>
-    </ul>
+<nav class="nav">
+  <ul class="nav-left">
+    <li> <%= link_to "Store Home", store_path %> </li>
+  </ul>
+  <ul class="nav-right">
+    <li> <%= link_to "sign in", new_user_session_path if !current_user %> </li>
+    <li> <%= link_to "Sign up", new_user_registration_path if !current_user %> </li>
+    <li> <%= "Signed in as #{current_user.email}" if current_user  %> </li>
+    <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete if current_user  %> </li>
+    <li> <%= link_to "Cart", cart_path(current_cart) if current_cart %></li>
+  </ul>
 </nav>
